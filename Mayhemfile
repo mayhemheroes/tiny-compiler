@@ -1,0 +1,6 @@
+project: rnshah9/tiny-compiler
+target: compiler
+
+cmds:
+  - cmd: /tiny-compiler/compiler @@
+    filepath: /test.txt
