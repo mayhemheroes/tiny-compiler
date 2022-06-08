@@ -1,6 +1,6 @@
-project: rnshah9/tiny-compiler
+project: tiny-compiler
 target: compiler
 
 cmds:
-  - cmd: /tiny-compiler/compiler @@
+  - cmd: /tiny-compiler/compiler /test.txt
     filepath: /test.txt
