@@ -2,5 +2,4 @@ project: tiny-compiler
 target: compiler
 
 cmds:
-  - cmd: /tiny-compiler/compiler /test.txt
-    filepath: /test.txt
+  - cmd: /compiler @@
