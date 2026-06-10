@@ -1,0 +1,16 @@
+project: tiny-compiler
+target: compiler
+
+# File-input (CLI) target: feed the fuzz bytes as a source file to `compiler` — the tiny-compiler
+# binary that LEXES, PARSES, generates bytecode for, and RUNS a toy-language program. The whole
+# pipeline (scanner, parser, ASM-like codegen, VM, symbol table) runs on the input. Not libFuzzer:
+# the natural fuzz surface is the compiler on a source file. @@ is the input-file placeholder.
+# Ported from the old integration's file-input target (old: /tiny-compiler/compiler /test.txt).
+cmds:
+  - cmd: /mayhem/compiler @@
+    # tiny-compiler never frees by design (it reclaims memory at process exit), so LeakSanitizer would
+    # flag benign "leaks" on nearly every input. build.sh bakes detect_leaks=0 into the binary; this env
+    # documents it and covers any invocation that ignores the baked default. ASan's overflow/UAF checks
+    # and all of UBSan remain on and halting.
+testsuite:
+  - file:///mayhem/mayhem/testsuite
