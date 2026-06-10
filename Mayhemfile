@@ -1,0 +1,5 @@
+project: tiny-compiler
+target: compiler
+
+cmds:
+  - cmd: /compiler @@
